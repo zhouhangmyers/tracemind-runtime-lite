@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tracemind-runtime-lite"
+version = "0.1.0"
+description = "A small, single-agent runtime with explicit model and tool boundaries"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "TraceMind contributors"}]
+dependencies = ["jsonschema>=4.26,<5", "referencing>=0.37,<1"]
+
+[project.optional-dependencies]
+langchain = ["langchain-core>=1.0,<2"]
+deepseek = ["langchain-core>=1.0,<2", "langchain-deepseek>=1.1,<2"]
+dev = ["ruff>=0.16,<1", "mypy>=1.20,<2", "types-jsonschema>=4.26,<5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tracemind_runtime = ["py.typed"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
